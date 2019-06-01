@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="author" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<title>Blimp Blog Web</title>
+
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+
+<!-- Main css -->
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link href="https://fonts.googleapis.com/css?family=Lora|Merriweather:300,400" rel="stylesheet">
+    
+<link rel = "shortcut icon" href = "{% static 'favicon.ICO' %}">
+
+
+</head>
+<body>
+
+<!-- PRE LOADER -->
+
+<div class="preloader">
+     <div class="sk-spinner sk-spinner-wordpress">
+          <span class="sk-inner-circle"></span>
+     </div>
+</div>
+
+<!-- Navigation section  -->
+
+{% include "nav.html" %}
+
+<!-- Home Section -->
+
+<section id="home" class="main-home parallax-section">
+     <div class="overlay"></div>
+     <div id="particles-js"></div>
+     <div class="container">
+          <div class="row">
+
+               <div class="col-md-12 col-sm-12">
+                    <h1>Hello! This is Blimp Blog.</h1>
+                    <h4>Stay Forever Cozy.</h4>
+                    <a href="#blog" class="smoothScroll btn btn-default">Discover More</a>
+               </div>
+
+          </div>
+     </div>
+</section>
+
+<!-- Blog Section -->
+
+<section id="blog">
+     <div class="container">
+          <div class="row">
+
+               <div class="col-md-offset-1 col-md-10 col-sm-12">
+                {% for item in categories %}
+                <li><a href="#">{{item.name}}</a></li>
+                {% endfor %}
+                    {% for post in posts %}
+                    <div class="blog-post-thumb">
+                         <div class="blog-post-image">
+                              <a href="{% url 'singlepost' post.id %}">
+                                   <img src="{% static 'images/blog-image1.jpg' %}" class="img-responsive" alt="Blog Image">
+                              </a>
+                         </div>
+                         <div class="blog-post-title">
+                              <h3><a href="{% url 'singlepost' post.id %}">{{post.title}}</a></h3>
+                              <small>published {{post.published}} in {{post.category.name}} by {{post.author.first_name}}</small> 
+                         </div>
+                         <div class="blog-post-format">
+                              <span><a href="#"><img src="{% static 'images/author-image1.jpg' %}" class="img-responsive img-circle"> Jen Lopez</a></span>
+                              <span><i class="fa fa-date"></i> July 22, 2017</span>
+                              <span><a href="#"><i class="fa fa-comment-o"></i> 35 Comments</a></span>
+                         </div>
+                         <div class="blog-post-des">
+                              <p>{{post.body|truncatewords:10}}...</p>
+                              <a href="{% url 'singlepost' post.slug %}" class="btn btn-default">Continue Reading</a>
+                         </div>
+                    </div>
+                    {% endfor %}
+                    <!--<div class="blog-post-thumb">
+                         <div class="blog-post-video">
+                              <div class="embed-responsive embed-responsive-16by9">
+                                   <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Pgmx7z49OEk" allowfullscreen></iframe>
+                              </div>
+                         </div>
+                         <div class="blog-post-title">
+                              <h3><a href="single-post.html">Nam interdum maximus dolor faucibus</a></h3>
+                         </div>
+                         <div class="blog-post-format">
+                              <span><a href="#"><img src="{% static 'images/author-image1.jpg' %}" class="img-responsive img-circle"> Jen Lopez</a></span>
+                              <span><i class="fa fa-date"></i> May 30, 2017</span>
+                              <span><a href="#"><i class="fa fa-comment-o"></i> 63 Comments</a></span>
+                         </div>
+                         <div class="blog-post-des">
+                              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                              <a href="single-post.html" class="btn btn-default">Continue Reading</a>
+                         </div
+                    </div>-->
+               </div>
+
+          </div>
+     </div>
+</section>
+
+<!-- Footer Section -->
+{% include "pagination.html" with page=posts%}
+{% include "footer.html" %}
+
+<!-- Back top -->
+<a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
+
+<!-- SCRIPTS -->
+
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/particles.min.js' %}"></script>
+<script src="{% static 'js/app.js' %}"></script>
+<script src="{% static 'js/jquery.parallax.js' %}"></script>
+<script src="{% static 'js/smoothscroll.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<form method="POST">
+		{% csfr_token %}
+		{{new_post.as_p}}
+		<input type="submit" name="">
+	</form>
+
+</body>
+</html>
